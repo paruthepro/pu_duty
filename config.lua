@@ -1,4 +1,7 @@
 Config = {}
+
+Config.PayoutPeriod = 15 -- Time in minutes for payout
+
 Config.Jobs = {groups = {
     ['police'] = 0,
     ['bcso'] = 0,
