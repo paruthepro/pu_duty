@@ -29,20 +29,24 @@ function Payment(HasJob, Duty)
     end
 end
 
-AddEventHandler('ox:playerLoaded', function(source, userid, charid)
-    Duty = false
-end)
-
-AddEventHandler('ox:playerLogout', function(source, userid, charid)
-    Duty = false
-end)
-AddEventHandler('ox:characterDeleted', function(source, userid, charid)
-    Duty = false
-end)
-
 RegisterNetEvent('pu_duty:server:toggle', function(job)
     if HasJob then
     Duty = true
     Payment(HasJob, Duty)
     end
 end)
+
+RegisterNetEvent('pu_duty:server:paychecks', function()
+    local player = Ox.GetPlayer(source)
+    exports.oxmysql:fetch('SELECT stateId FROM paychecks WHERE stateId = @stateId', {
+        ['stateId'] = player.stateId,
+        ['duty'] = Duty
+    }, function(result)
+        if result[1] then
+
+        else
+            TriggerClientEvent('ox_lib:notify', source, Config.Locales.ErrorOwner)
+        end
+    end)
+end)
+
