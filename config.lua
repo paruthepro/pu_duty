@@ -23,11 +23,52 @@ Config.Jobs = {groups = {
 }}
 
 Config.JobPay = {
-    police = 400,
-    bcso = 0,
-    sasp = 0,
+    police = {
+        280, -- Grade 1
+        320, -- Grade 2
+        360, -- Grade 3
+        400, -- Grade 4
+        440, -- Grade 5
+        480, -- Grade 6
+        520, -- Grade 7
+        600, -- Grade 8
+        700, -- Grade 9
+    },
+    bcso = {
+        280, -- Grade 1
+        320, -- Grade 2
+        360, -- Grade 3
+        400, -- Grade 4
+        440, -- Grade 5
+        480, -- Grade 6
+        520, -- Grade 7
+        600, -- Grade 8
+        700, -- Grade 9
+    },
+    sasp = {
+        280, -- Grade 1
+        320, -- Grade 2
+        360, -- Grade 3
+        400, -- Grade 4
+        440, -- Grade 5
+        480, -- Grade 6
+        520, -- Grade 7
+        600, -- Grade 8
+        700, -- Grade 9
+    },
     sams = 0,
-    doc = 0,
+    doc = {
+        280, -- Grade 1
+        320, -- Grade 2
+        360, -- Grade 3
+        400, -- Grade 4
+        440, -- Grade 5
+        480, -- Grade 6
+        520, -- Grade 7
+        600, -- Grade 8
+        700, -- Grade 9
+        740, -- Grade 10
+    },
     doj = 0,
     dynasty8 = 0,
     gunshop = 0,
