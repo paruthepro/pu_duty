@@ -1,11 +1,6 @@
 Duty = false
 
-AddEventHandler('ox:createdCharacter', function(source, userId, charId)
-    local player = Ox.GetPlayer(source)
-    player.setGroup('unemployed', 1)
-end)
-
-function PaymentOffDuty(HasJob, Duty)
+local function PaymentOffDuty(HasJob, Duty)
     for i in Config.OffDutyPay do
         for v in #HasJob do
             HasJob = HasJob[v]
@@ -18,14 +13,18 @@ function PaymentOffDuty(HasJob, Duty)
     end
 end
 
-function Payment(HasJob, Duty)
+local function Payment(HasJob, Duty)
     local Player = Ox.GetPlayer(source)
     local Groups = Player.getGroups()
     for group, grade in pairs(Groups) do
         table.sort(Groups)
-        Payment = #Config.OffDutyPay[Groups.grade]
+        Work = {
+            group = group,
+            grade = grade
+        }
+        local payment = Config.OffDutyPay
         while HasJob and Duty do
-            exports.pefcl:addBankBalance(source, { amount = Payment, message = group.." "..grade })
+            exports.pefcl:addBankBalance(source, { amount = payment, message = group.." "..grade })
             Wait(Config.PayoutPeriod * 10000)
         end
     end
