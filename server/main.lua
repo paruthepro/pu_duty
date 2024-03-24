@@ -31,23 +31,11 @@ function Payment(HasJob, Duty)
     end
 end
 
-RegisterNetEvent('pu_duty:server:toggle', function(job)
-    if HasJob then
+RegisterNetEvent('pu_duty:server:toggle', function()
     Duty = true
-    Payment(HasJob, Duty)
-    end
 end)
 
 RegisterNetEvent('pu_duty:server:paychecks', function(source, stateId)
     local player = Ox.GetPlayer(source)
-    exports.oxmysql:fetch('SELECT stateId FROM paychecks WHERE stateId = @stateId', {
-        ['stateId'] = player.stateId,
-        ['duty'] = Duty
-    },
-    MySQL.scalar('SELECT `stateId` FROM `paychecks` WHERE `stateId` = ?', {stateId}),
-    function(result)
-        if result[1] then
-        end
-    end)
 end)
 
