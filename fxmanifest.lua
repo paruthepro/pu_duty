@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
 author 'Paru'
-description 'Global Duty for ox_core'
+description 'Global Duty & Paychecks for ox_core'
 version '1.0'
 
 shared_scripts {

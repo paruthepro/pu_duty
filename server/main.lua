@@ -1,7 +1,9 @@
-Player = Ox.GetPlayer(source)
-HasJob = {}
-HasJob = Player.getGroup(Config.Jobs)
 Duty = false
+
+AddEventHandler('ox:createdCharacter', function(source, userId, charId)
+    local player = Ox.GetPlayer(source)
+    player.setGroup('unemployed', 1)
+end)
 
 function PaymentOffDuty(HasJob, Duty)
     for i in Config.OffDutyPay do
@@ -36,16 +38,15 @@ RegisterNetEvent('pu_duty:server:toggle', function(job)
     end
 end)
 
-RegisterNetEvent('pu_duty:server:paychecks', function()
+RegisterNetEvent('pu_duty:server:paychecks', function(source, stateId)
     local player = Ox.GetPlayer(source)
     exports.oxmysql:fetch('SELECT stateId FROM paychecks WHERE stateId = @stateId', {
         ['stateId'] = player.stateId,
         ['duty'] = Duty
-    }, function(result)
+    },
+    MySQL.scalar('SELECT `stateId` FROM `paychecks` WHERE `stateId` = ?', {stateId}),
+    function(result)
         if result[1] then
-
-        else
-            TriggerClientEvent('ox_lib:notify', source, Config.Locales.ErrorOwner)
         end
     end)
 end)
